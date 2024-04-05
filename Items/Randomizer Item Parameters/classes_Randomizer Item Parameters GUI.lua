@@ -1,12 +1,12 @@
 -- @author Daniel Lumertz
--- @version 1.0
+-- @version 1.1
 -- @provides
 --    [nomain] Functions/*.lua
 
 --dofile("C:/Users/DSL/AppData/Roaming/REAPER/Scripts/Meus/Debug VS/DL Debug.lua")
 
 -- Global Variables
-ScriptVersion = "1.00"
+ScriptVersion = "1.1"
 ScriptName = 'Randomize Item Parameters'
 Settings = {
     pos = {
