@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Classes Reascript" commit="6c82d2ccca85d013166d11abb20bd98eb5115bd8">
+<index version="1" name="Classes Reascript" commit="be8d6e2d643b10f64b5c44a33a5edff77fddfb07">
   <category name="Example">
     <reapack name="cfillion_Hello world.lua" type="script" desc="Hello world">
       <metadata>
@@ -33,6 +33,14 @@ Markdown
         <source file="Functions/Randomize Function.lua">https://github.com/daniellumertz/Classes-Reascript/raw/6c82d2ccca85d013166d11abb20bd98eb5115bd8/Items/Randomizer%20Item%20Parameters/Functions/Randomize%20Function.lua</source>
         <source file="Functions/User Interface.lua">https://github.com/daniellumertz/Classes-Reascript/raw/6c82d2ccca85d013166d11abb20bd98eb5115bd8/Items/Randomizer%20Item%20Parameters/Functions/User%20Interface.lua</source>
         <source file="Functions/json.lua">https://github.com/daniellumertz/Classes-Reascript/raw/6c82d2ccca85d013166d11abb20bd98eb5115bd8/Items/Randomizer%20Item%20Parameters/Functions/json.lua</source>
+      </version>
+      <version name="1.1" author="Daniel Lumertz" time="2024-04-05T04:52:26Z">
+        <source main="main">https://github.com/daniellumertz/Classes-Reascript/raw/be8d6e2d643b10f64b5c44a33a5edff77fddfb07/Items/Randomizer%20Item%20Parameters/classes_Randomizer%20Item%20Parameters%20GUI.lua</source>
+        <source file="Functions/General Functions.lua">https://github.com/daniellumertz/Classes-Reascript/raw/be8d6e2d643b10f64b5c44a33a5edff77fddfb07/Items/Randomizer%20Item%20Parameters/Functions/General%20Functions.lua</source>
+        <source file="Functions/Presets.lua">https://github.com/daniellumertz/Classes-Reascript/raw/be8d6e2d643b10f64b5c44a33a5edff77fddfb07/Items/Randomizer%20Item%20Parameters/Functions/Presets.lua</source>
+        <source file="Functions/Randomize Function.lua">https://github.com/daniellumertz/Classes-Reascript/raw/be8d6e2d643b10f64b5c44a33a5edff77fddfb07/Items/Randomizer%20Item%20Parameters/Functions/Randomize%20Function.lua</source>
+        <source file="Functions/User Interface.lua">https://github.com/daniellumertz/Classes-Reascript/raw/be8d6e2d643b10f64b5c44a33a5edff77fddfb07/Items/Randomizer%20Item%20Parameters/Functions/User%20Interface.lua</source>
+        <source file="Functions/json.lua">https://github.com/daniellumertz/Classes-Reascript/raw/be8d6e2d643b10f64b5c44a33a5edff77fddfb07/Items/Randomizer%20Item%20Parameters/Functions/json.lua</source>
       </version>
     </reapack>
   </category>
