@@ -6,6 +6,7 @@ local gui_H = 500
 local pin = true
 local font = reaper.ImGui_CreateFont('sans-serif', 14)
 local FLTMIN = reaper.ImGui_NumericLimits_Float()
+local held_keys = {}
 
 --local demo = dofile(reaper.GetResourcePath() .. '/Scripts/ReaTeam Extensions/API/ReaImGui_Demo.lua')
 reaper.ImGui_Attach(ctx, font)
@@ -13,10 +14,6 @@ function loop()
     --demo.PushStyle(ctx)
     --demo.ShowDemoWindow(ctx)
     PushTheme()
-    -- Send Keys
-    if not reaper.ImGui_IsAnyItemActive(ctx) then
-        PassKeys2(false) 
-    end
 
     -- Window Settings
     local window_flags =  reaper.ImGui_WindowFlags_NoResize() | reaper.ImGui_WindowFlags_MenuBar()
@@ -28,6 +25,13 @@ function loop()
     reaper.ImGui_PushFont(ctx, font)
     -- Begin
     local visible, open = reaper.ImGui_Begin(ctx, window_name, true, window_flags)
+
+    -- Send Keys
+    if reaper.ImGui_IsWindowFocused(ctx) and (not reaper.ImGui_IsAnyItemActive(ctx)) then
+        --PassKeys(ctx, false, held_keys) -- Requires at least v2.14.0.1 and JS_extension! All OS
+        PassKeys2(false)  -- Requires JS_extension. OS: Windows Only 
+    end
+
     if visible then
         -- Menu Bar
         if reaper.ImGui_BeginMenuBar(ctx) then
@@ -181,6 +185,42 @@ function loop()
     if open then
       reaper.defer(loop)
     end 
+end
+
+function PassKeys(ctx, is_midieditor, held_keys)
+    if not reaper.ImGui_IsWindowFocused(ctx) or reaper.ImGui_IsAnyItemActive(ctx) then return end -- Only when Script haves the focus
+
+    local sel_window, section 
+    if is_midieditor then
+        local midi = reaper.MIDIEditor_GetActive()
+        if midi then 
+            sel_window = midi 
+            section = 32060
+        end
+    end
+
+    if not sel_window then -- Send to Main Window or Midi Editor closed
+        sel_window = reaper.GetMainHwnd()
+        section = 0
+    end
+
+    local keys = reaper.JS_VKeys_GetState(0)
+    for k = 1, #keys do
+        local is_key = keys:byte(k) ~= 0
+        if k ~= 0xD and is_key and not held_keys[k] then
+            reaper.CF_SendActionShortcut(sel_window, section, k)
+            held_keys[k] = true
+        elseif not is_key and held_keys[k] then
+            held_keys[k] = nil
+        end
+    end
+
+    if reaper.ImGui_IsKeyPressed(ctx, reaper.ImGui_Key_Enter()) then
+        reaper.CF_SendActionShortcut(sel_window, section, 0xD)
+    end
+    if reaper.ImGui_IsKeyPressed(ctx, reaper.ImGui_Key_KeypadEnter()) then
+        reaper.CF_SendActionShortcut(sel_window, section, 0x800D)
+    end  
 end
 
 -- PassKeys to main or midieditor(if is_midieditor and there is any midi editor active). 
